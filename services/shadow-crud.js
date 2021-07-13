@@ -234,8 +234,8 @@ const buildAssocResolvers = model => {
             };
 
             const { id } = params;
-
-            const cacheKey = `${model.info.name.toLowerCase()}:${id}:${JSON.stringify(params).replace(/"/g, "'")}`;
+            
+            const cacheKey = `${model.info.name.toLowerCase()}:${id}:${alias}:${JSON.stringify(params).replace(/"/g, "'")}`;
 
             const fromCache = await redisClient.get(cacheKey);
 
@@ -248,6 +248,7 @@ const buildAssocResolvers = model => {
 
               await redisClient.set(cacheKey, JSON.stringify(entry));
             }
+
             return assignOptions(entry[alias], obj);
           };
           break;
