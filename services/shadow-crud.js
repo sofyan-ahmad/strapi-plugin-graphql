@@ -280,7 +280,7 @@ const buildAssocResolvers = model => {
               if (_.has(obj[alias], targetPK)) {
                 return assignOptions(obj[alias], obj);
               }
-              const cacheKey = `${model.info.name.toLowerCase()}:${localId}:${foreignId}:${JSON.stringify(params).replace(/"/g, "'")}`;
+              const cacheKey = `${model.info.name.toLowerCase()}:${foreignId}:${localId}:${JSON.stringify(params).replace(/"/g, "'")}`;
 
               const fromCache = await redisClient.get(cacheKey);
 
@@ -315,7 +315,7 @@ const buildAssocResolvers = model => {
                 [via]: localId,
               };
 
-              const cacheKey = `${model.info.name.toLowerCase()}:${localId}:${foreignId}:${JSON.stringify(params).replace(/"/g, "'")}`;
+              const cacheKey = `${model.info.name.toLowerCase()}:${foreignId}:${localId}:${JSON.stringify(params).replace(/"/g, "'")}`;
 
               const fromCache = await redisClient.get(cacheKey);
 
